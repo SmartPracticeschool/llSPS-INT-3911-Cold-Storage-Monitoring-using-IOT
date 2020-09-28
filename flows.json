@@ -1,0 +1,507 @@
+[
+    {
+        "id": "6ba75f5f.a0c9d",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "f7c05615.2e2758",
+        "type": "ibmiot",
+        "z": "",
+        "name": "",
+        "keepalive": "60",
+        "serverName": "",
+        "cleansession": true,
+        "appId": "",
+        "shared": false
+    },
+    {
+        "id": "c10ce239.b7162",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "48ed4933.8be6a8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Default",
+        "tab": "c10ce239.b7162",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "6e7dc776.0cb7c8",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "8532e8b9.550428",
+        "type": "debug",
+        "z": "6ba75f5f.a0c9d",
+        "name": "msg.payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c739d274.a4dd9",
+        "type": "ibmiot in",
+        "z": "6ba75f5f.a0c9d",
+        "authentication": "apiKey",
+        "apiKey": "f7c05615.2e2758",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "ard123",
+        "applicationId": "",
+        "deviceType": "arduino",
+        "eventType": "+",
+        "commandType": "",
+        "format": "json",
+        "name": "IBM IoT",
+        "service": "registered",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": false,
+        "allLogicalInterfaces": "",
+        "allEvents": false,
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "8532e8b9.550428",
+                "bbdcbb5c.3b3a08",
+                "135212e3.60a79d"
+            ]
+        ]
+    },
+    {
+        "id": "bbdcbb5c.3b3a08",
+        "type": "function",
+        "z": "6ba75f5f.a0c9d",
+        "name": "Temperature",
+        "func": "global.set('Temperature',msg.payload.Temperature)\nmsg.payload=msg.payload.Temperature\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 350,
+        "y": 80,
+        "wires": [
+            [
+                "8532e8b9.550428",
+                "cc8e0cc9.52455"
+            ]
+        ]
+    },
+    {
+        "id": "135212e3.60a79d",
+        "type": "function",
+        "z": "6ba75f5f.a0c9d",
+        "name": "Humidity",
+        "func": "global.set('Humidity',msg.payload.Humidity)\nmsg.payload=msg.payload.Humidity;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 340,
+        "y": 260,
+        "wires": [
+            [
+                "8532e8b9.550428",
+                "3e85cd0a.c9a0f2"
+            ]
+        ]
+    },
+    {
+        "id": "cc8e0cc9.52455",
+        "type": "ui_gauge",
+        "z": "6ba75f5f.a0c9d",
+        "name": "",
+        "group": "48ed4933.8be6a8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 730,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "3e85cd0a.c9a0f2",
+        "type": "ui_gauge",
+        "z": "6ba75f5f.a0c9d",
+        "name": "",
+        "group": "48ed4933.8be6a8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Humidity",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 740,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "b6796d03.67e04",
+        "type": "ui_button",
+        "z": "6ba75f5f.a0c9d",
+        "name": "",
+        "group": "48ed4933.8be6a8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "MOTOR ON",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"command\":\"MOTORON\"}",
+        "payloadType": "json",
+        "topic": "",
+        "x": 190,
+        "y": 420,
+        "wires": [
+            [
+                "bbea3e4d.08d04",
+                "cb2ee88a.46d818"
+            ]
+        ]
+    },
+    {
+        "id": "1de970d7.b3c85f",
+        "type": "ui_button",
+        "z": "6ba75f5f.a0c9d",
+        "name": "",
+        "group": "48ed4933.8be6a8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "MOTOR OFF",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"command\":\"LIGHTOFF\"}",
+        "payloadType": "json",
+        "topic": "",
+        "x": 200,
+        "y": 480,
+        "wires": [
+            [
+                "bbea3e4d.08d04",
+                "cb2ee88a.46d818"
+            ]
+        ]
+    },
+    {
+        "id": "bbea3e4d.08d04",
+        "type": "ibmiot out",
+        "z": "6ba75f5f.a0c9d",
+        "authentication": "apiKey",
+        "apiKey": "f7c05615.2e2758",
+        "outputType": "cmd",
+        "deviceId": "ard123",
+        "deviceType": "arduino",
+        "eventCommandType": "home",
+        "format": "json",
+        "data": "data",
+        "qos": 0,
+        "name": "IBM IoT",
+        "service": "registered",
+        "x": 720,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "682ca3ae.e5b06c",
+        "type": "http in",
+        "z": "6ba75f5f.a0c9d",
+        "name": "",
+        "url": "/sensor",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 90,
+        "y": 320,
+        "wires": [
+            [
+                "d9a69f6e.a2de2"
+            ]
+        ]
+    },
+    {
+        "id": "dc27a64e.189808",
+        "type": "http response",
+        "z": "6ba75f5f.a0c9d",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 550,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "d9a69f6e.a2de2",
+        "type": "function",
+        "z": "6ba75f5f.a0c9d",
+        "name": "data",
+        "func": "msg.payload={'Temperature':global.get(\"Temperature\"),'Humidity':global.get(\"Humidity\")}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 310,
+        "y": 320,
+        "wires": [
+            [
+                "dc27a64e.189808"
+            ]
+        ]
+    },
+    {
+        "id": "cb2ee88a.46d818",
+        "type": "debug",
+        "z": "6ba75f5f.a0c9d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "d814ef72.5a3d7",
+        "type": "http in",
+        "z": "6ba75f5f.a0c9d",
+        "name": "",
+        "url": "/command",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 560,
+        "wires": [
+            [
+                "7fffca8e.218f34"
+            ]
+        ]
+    },
+    {
+        "id": "70c97c3.700f584",
+        "type": "http response",
+        "z": "6ba75f5f.a0c9d",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 630,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "7fffca8e.218f34",
+        "type": "function",
+        "z": "6ba75f5f.a0c9d",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 400,
+        "y": 560,
+        "wires": [
+            [
+                "70c97c3.700f584",
+                "9c7840e0.1b4a7",
+                "bbea3e4d.08d04"
+            ]
+        ]
+    },
+    {
+        "id": "9c7840e0.1b4a7",
+        "type": "debug",
+        "z": "6ba75f5f.a0c9d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "ce8e77e3.e49728",
+        "type": "inject",
+        "z": "6ba75f5f.a0c9d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 100,
+        "wires": [
+            [
+                "8532e8b9.550428"
+            ]
+        ]
+    }
+]
